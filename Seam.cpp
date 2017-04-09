@@ -36,7 +36,6 @@ void FillFinalMatrix(std::vector<std::vector<int> > &ValueMatrix, std::vector<st
  }
 }
 
-
 /*
   Read in Array from input .pgm file
 */
@@ -50,7 +49,6 @@ void FillValueMatrix(std::vector<std::vector<int> > &matrix, std::ifstream &inpu
     }
   }
 }
-
 
 /*
 	Create Energy Matrix & Cumulative Energy Matrix from Value Matrix
@@ -208,7 +206,6 @@ void RotateNeg90(std::vector<std::vector<int> > &ValueMatrix)
   ValueMatrix = RotatedMatrix;
 }
 
-
 /*
   Removes [SEAMS] number of seams from the 
 */
@@ -260,7 +257,6 @@ void OutputFinalMatrix(const std::vector<std::vector<int>> &matrix, std::ofstrea
   }
 }
 
-
 /*
   Get values from infile
 */
@@ -275,7 +271,7 @@ void GetValuesFromFile(int &X_WIDTH, int &Y_HEIGHT, int &MAX_VALUE, std::ifstrea
   //Take in Dimensions from infile
   input >> X_WIDTH >> Y_HEIGHT;
   input >> MAX_VALUE;
-  input.close();
+
 }
 
 

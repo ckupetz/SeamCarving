@@ -22,7 +22,8 @@ int main(int argc, char * argv[]) {
   std::string filename = argv[1];
 
   //Get values from infile
-  GetDimensions(X_WIDTH, Y_HEIGHT, MAX_VALUE, input);
+  GetValuesFromFile(X_WIDTH, Y_HEIGHT, MAX_VALUE, input);
+
 
   //Create initial Matrix to read in from infile
   std::vector<std::vector<int>> ValueMatrix      (Y_HEIGHT, std::vector<int> (X_WIDTH,    0  ));
@@ -40,7 +41,6 @@ int main(int argc, char * argv[]) {
   RotateNeg90        (ValueMatrix);
 
 
-
   //Create new filename for outfile
   std::size_t pos = filename.find_last_of(".");
   if (pos != std::string::npos) filename = filename.substr(0, pos) + "_processed" + filename.substr(pos, pos + 2);
@@ -49,6 +49,7 @@ int main(int argc, char * argv[]) {
   std::ofstream output(filename);
   OutputFinalMatrix(ValueMatrix, output, MAX_VALUE);
   output.close();
+  input.close();
 
 }
 
