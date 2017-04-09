@@ -1,5 +1,7 @@
 # SeamCarving
 
+A C++ implementation of greyscale seam carving with .pgm files
+
 The code can be built using `make clean && make`.
 
 One executable will be created, `seam`.
