@@ -2,7 +2,6 @@
 #include <vector>
 #include <fstream>
 
-
 /*
 	Output 2d Matrix of Integers
 */

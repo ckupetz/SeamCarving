@@ -24,7 +24,6 @@ int main(int argc, char * argv[]) {
   //Get values from infile
   GetValuesFromFile(X_WIDTH, Y_HEIGHT, MAX_VALUE, input);
 
-
   //Create initial Matrix to read in from infile
   std::vector<std::vector<int>> ValueMatrix      (Y_HEIGHT, std::vector<int> (X_WIDTH,    0  ));
 
@@ -39,7 +38,6 @@ int main(int argc, char * argv[]) {
   RemoveSeam         (Y_HEIGHT, X_WIDTH, HORIZTONAL_SEAMS, ValueMatrix, true);
 
   RotateNeg90        (ValueMatrix);
-
 
   //Create new filename for outfile
   std::size_t pos = filename.find_last_of(".");
