@@ -1,3 +1,5 @@
+# SeamCarving
+
 The code can be built using `make clean && make`.
 
 One executable will be created, `seam`.
