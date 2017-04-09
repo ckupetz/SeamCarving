@@ -28,11 +28,13 @@ int main(int argc, char * argv[]) {
   //Skip the commented line in the .pgm file
   input.ignore(500, '\n');
 
+  //Take in Dimensions from infile
   input >> X_WIDTH >> Y_HEIGHT;
   input >> MAX_VALUE;
+  input.close();
 
 
-
+  //Create initial Matrix to read in from infile
   std::vector<std::vector<int>> ValueMatrix      (Y_HEIGHT, std::vector<int> (X_WIDTH,    0  ));
 
   FillValueMatrix    (ValueMatrix, input);
@@ -49,13 +51,14 @@ int main(int argc, char * argv[]) {
 
 
 
+  //Create new filename for outfile
   std::size_t pos = filename.find_last_of(".");
   if (pos != std::string::npos) filename = filename.substr(0, pos) + "_processed" + filename.substr(pos, pos + 2);
+  
   //Create the outfile and fill it with the decompressed string
   std::ofstream output(filename);
-
   OutputFinalMatrix(ValueMatrix, output, MAX_VALUE);
-
-
+  output.close();
+  
 }
 
