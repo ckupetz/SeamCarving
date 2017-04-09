@@ -22,10 +22,10 @@ void OutputMatrix(std::vector<std::vector<int> > &matrix) {
 */
 void FillFinalMatrix(std::vector<std::vector<int> > &ValueMatrix, std::vector<std::vector<int> > &FinalMatrix) {
 
-	//Boolean the indicate whether the seam to be removed has been hit
+  //Boolean the indicate whether the seam to be removed has been hit
   bool SeamFlag = false;
 
-	//Iterate through the matrices and copy everything but the '-1's to the new Matrix
+  //Iterate through the matrices and copy everything but the '-1's to the new Matrix
   for (int i = 0; i < ValueMatrix.size(); i++) {
     for (int j = 0; j < ValueMatrix[i].size(); j++) {
      if (ValueMatrix[i][j] == -1) SeamFlag = true;
