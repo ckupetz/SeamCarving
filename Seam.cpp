@@ -3,7 +3,7 @@
 #include <fstream>
 
 /*
-	Output 2d Matrix of Integers
+  Output 2d Matrix of Integers
 */
 void OutputMatrix(std::vector<std::vector<int> > &matrix) {
 	
@@ -18,7 +18,7 @@ void OutputMatrix(std::vector<std::vector<int> > &matrix) {
 }
 
 /*
-	Create new Matrix
+  Create new Matrix
 */
 void FillFinalMatrix(std::vector<std::vector<int> > &ValueMatrix, std::vector<std::vector<int> > &FinalMatrix) {
 
@@ -50,7 +50,7 @@ void FillValueMatrix(std::vector<std::vector<int> > &matrix, std::ifstream &inpu
 }
 
 /*
-	Create Energy Matrix & Cumulative Energy Matrix from Value Matrix
+  Create Energy Matrix & Cumulative Energy Matrix from Value Matrix
 */
 void FillEnergyMatrices(std::vector<std::vector<int> > &ValueMatrix, std::vector<std::vector<int> > &EnergyMatrix, std::vector<std::vector<int> > &CumulativeMatrix) {
 	
@@ -105,6 +105,9 @@ void FillEnergyMatrices(std::vector<std::vector<int> > &ValueMatrix, std::vector
 }
 }
 
+/*
+  Find the Seam to be deleted from the Matrix
+*/
 void FindSeam(std::vector<std::vector<int> > &CumulativeMatrix, std::vector<std::vector<int> > &ValueMatrix, bool Rotated) {
 
   //Set dimensional integers to reference
