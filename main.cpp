@@ -21,18 +21,8 @@ int main(int argc, char * argv[]) {
   std::ifstream input(argv[1]);
   std::string filename = argv[1];
 
-  //Get the literal "P2" from the .pgm file
-  std::string P2_Check;
-  std::getline(input, P2_Check);
-
-  //Skip the commented line in the .pgm file
-  input.ignore(500, '\n');
-
-  //Take in Dimensions from infile
-  input >> X_WIDTH >> Y_HEIGHT;
-  input >> MAX_VALUE;
-  input.close();
-
+  //Get values from infile
+  GetDimensions(X_WIDTH, Y_HEIGHT, MAX_VALUE, input);
 
   //Create initial Matrix to read in from infile
   std::vector<std::vector<int>> ValueMatrix      (Y_HEIGHT, std::vector<int> (X_WIDTH,    0  ));
@@ -59,6 +49,6 @@ int main(int argc, char * argv[]) {
   std::ofstream output(filename);
   OutputFinalMatrix(ValueMatrix, output, MAX_VALUE);
   output.close();
-  
+
 }
 

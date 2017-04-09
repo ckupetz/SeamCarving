@@ -261,6 +261,22 @@ void OutputFinalMatrix(const std::vector<std::vector<int>> &matrix, std::ofstrea
 }
 
 
+/*
+  Get values from infile
+*/
+void GetValuesFromFile(int &X_WIDTH, int &Y_HEIGHT, int &MAX_VALUE, std::ifstream &input) {
+  //Get the literal "P2" from the .pgm file
+  std::string P2;
+  std::getline(input, P2);
+
+  //Skip the commented line in the .pgm file
+  input.ignore(500, '\n');
+
+  //Take in Dimensions from infile
+  input >> X_WIDTH >> Y_HEIGHT;
+  input >> MAX_VALUE;
+  input.close();
+}
 
 
 
