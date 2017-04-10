@@ -29,15 +29,15 @@ int main(int argc, char * argv[]) {
 
   FillValueMatrix    (ValueMatrix, input);
 
-  RemoveSeam         (Y_HEIGHT, X_WIDTH, VERTICAL_SEAMS, ValueMatrix, false);
+  RemoveSeam         (Y_HEIGHT, X_WIDTH, VERTICAL_SEAMS, ValueMatrix);
 
-  Rotate90           (ValueMatrix);
+  TransposeMatrix    (ValueMatrix);
   
   std::swap          (X_WIDTH, Y_HEIGHT);
 
-  RemoveSeam         (Y_HEIGHT, X_WIDTH, HORIZTONAL_SEAMS, ValueMatrix, true);
+  RemoveSeam         (Y_HEIGHT, X_WIDTH, HORIZTONAL_SEAMS, ValueMatrix);
 
-  RotateNeg90        (ValueMatrix);
+  TransposeMatrix    (ValueMatrix);
 
   //Create new filename for outfile
   std::size_t pos = filename.find_last_of(".");

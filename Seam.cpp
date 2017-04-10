@@ -6,15 +6,15 @@
   Output 2d Matrix of Integers
 */
 void OutputMatrix(std::vector<std::vector<int> > &matrix) {
-	
-	std::cout << "\n\nMATRIX\n";
-	for (int i = 0; i < matrix.size(); i++) {
-		for (int j = 0; j < matrix[i].size(); j++) {
-			std::cout << matrix[i][j] << " ";
-		}
-		std::cout << "\n";
-	}
-	std::cout << "\n\n";
+  
+  std::cout << "\n\nMATRIX\n";
+  for (int i = 0; i < matrix.size(); i++) {
+    for (int j = 0; j < matrix[i].size(); j++) {
+      std::cout << matrix[i][j] << " ";
+    }
+    std::cout << "\n";
+  }
+  std::cout << "\n\n";
 }
 
 /*
@@ -53,7 +53,7 @@ void FillValueMatrix(std::vector<std::vector<int> > &matrix, std::ifstream &inpu
   Create Energy Matrix & Cumulative Energy Matrix from Value Matrix
 */
 void FillEnergyMatrices(std::vector<std::vector<int> > &ValueMatrix, std::vector<std::vector<int> > &EnergyMatrix, std::vector<std::vector<int> > &CumulativeMatrix) {
-	
+  
   //Iterate through the Matrix
   for (int i = 0; i < ValueMatrix.size(); ++i) {
     for (int j = 0; j < ValueMatrix[i].size(); ++j) {
@@ -108,7 +108,7 @@ void FillEnergyMatrices(std::vector<std::vector<int> > &ValueMatrix, std::vector
 /*
   Find the Seam to be deleted from the Matrix
 */
-void FindSeam(std::vector<std::vector<int> > &CumulativeMatrix, std::vector<std::vector<int> > &ValueMatrix, bool Rotated) {
+void FindSeam(std::vector<std::vector<int> > &CumulativeMatrix, std::vector<std::vector<int> > &ValueMatrix) {
 
   //Set dimensional integers to reference
   int Y_HEIGHT = CumulativeMatrix.size();
@@ -119,18 +119,13 @@ void FindSeam(std::vector<std::vector<int> > &CumulativeMatrix, std::vector<std:
 
   //Iterate through the matrix's bottom row and find the minimum index
   for (int i = 1; i < X_WIDTH; ++i) {;
-    if (Rotated) {
-      if (CumulativeMatrix[Y_HEIGHT-1][minimum_index] >= CumulativeMatrix[Y_HEIGHT-1][i]) minimum_index = i;
-    }
-    else {
       if (CumulativeMatrix[Y_HEIGHT-1][minimum_index] > CumulativeMatrix[Y_HEIGHT-1][i]) minimum_index = i;
-    }
   }
 
   //Set value
   ValueMatrix[Y_HEIGHT-1][minimum_index] = -1;
 
-	//Starting from the bottom, take the minimum value between LEFTUP, UP, and RIGHTUP
+  //Starting from the bottom, take the minimum value between LEFTUP, UP, and RIGHTUP
   for (int i = Y_HEIGHT - 1; i >= 0; --i) {
 
    //Booleans for checking whether you're on the edge of the matrix
@@ -150,46 +145,18 @@ void FindSeam(std::vector<std::vector<int> > &CumulativeMatrix, std::vector<std:
      Up = CumulativeMatrix[i-1][minimum_index];
      
      //Changing priority in the case of a tie depending on whether you have the transposed matrix or not
-     if (!Rotated) {
-       if      (leftUp ==  std::min({leftUp, rightUp, Up})) { ValueMatrix[i-1][minimum_index-1]  = -1; --minimum_index; }
-       else if (    Up ==  std::min({leftUp, rightUp, Up})) { ValueMatrix[i-1][minimum_index]    = -1;                  }
-       else  																							  { ValueMatrix[i-1][minimum_index+1]  = -1; ++minimum_index; }
-     }
-     else {
-       if      (rightUp ==  std::min({leftUp, rightUp, Up})) { ValueMatrix[i-1][minimum_index+1] = -1; ++minimum_index; }
-       else if (    Up ==  std::min({leftUp, rightUp, Up}))  { ValueMatrix[i-1][minimum_index]   = -1;                  }
-       else                                                  { ValueMatrix[i-1][minimum_index-1] = -1; --minimum_index; }          
-     }
+     if      (leftUp ==  std::min({leftUp, rightUp, Up})) { ValueMatrix[i-1][minimum_index-1]  = -1; --minimum_index; }
+     else if (    Up ==  std::min({leftUp, rightUp, Up})) { ValueMatrix[i-1][minimum_index]    = -1;                  }
+     else                                                 { ValueMatrix[i-1][minimum_index+1]  = -1; ++minimum_index; }
    } 
  }
 }
 
-/*
-  Rotating a matrix 90 degrees clockwise
-*/
-void Rotate90(std::vector<std::vector<int> > &ValueMatrix)
-{
-	//Temporary Matrix for rotation
-  std::vector<std::vector<int>> RotatedMatrix    (ValueMatrix[0].size(),  std::vector<int> (ValueMatrix.size(),   0  ));
-
-  //Set height/width, iterate through and fill in new values
-  int X_WIDTH = ValueMatrix[0].size();
-  int Y_HEIGHT = ValueMatrix.size();
-  for(int i=0; i<X_WIDTH; i++) {
-   for(int j=0; j<Y_HEIGHT; j++) {
-     RotatedMatrix[i][j] = ValueMatrix[Y_HEIGHT-1-j][i];
-   }
- }
- 
- //Clear current matrix and set it to new one
- ValueMatrix.clear();
- ValueMatrix = RotatedMatrix;
-}
 
 /*
-  Rotating a matrix 90 degrees counterclockwise
+  Transposing a Matrix
 */
-void RotateNeg90(std::vector<std::vector<int> > &ValueMatrix)
+void TransposeMatrix(std::vector<std::vector<int> > &ValueMatrix)
 {
   //Temporary Matrix for rotation
   std::vector<std::vector<int>> RotatedMatrix    (ValueMatrix[0].size(),  std::vector<int> (ValueMatrix.size(),   0  ));
@@ -197,11 +164,12 @@ void RotateNeg90(std::vector<std::vector<int> > &ValueMatrix)
   //Set height/width, iterate through and fill in new values
   int X_WIDTH = ValueMatrix[0].size();
   int Y_HEIGHT = ValueMatrix.size();
-  for(int i=0; i<X_WIDTH; i++) {
-    for(int j=0; j<Y_HEIGHT; j++) {
-      RotatedMatrix[i][j] = ValueMatrix[j][X_WIDTH - 1 - i];
+  for(int i=0; i<Y_HEIGHT; i++) {
+    for(int j=0; j<X_WIDTH; j++) {
+      RotatedMatrix[j][i]=ValueMatrix[i][j];
     }
   }
+
   
   //Clear current matrix and set it to new one
   ValueMatrix.clear();
@@ -211,7 +179,7 @@ void RotateNeg90(std::vector<std::vector<int> > &ValueMatrix)
 /*
   Removes [SEAMS] number of seams from the 
 */
-void RemoveSeam(int &Y_HEIGHT, int &X_WIDTH, int SEAMS, std::vector<std::vector<int> > &ValueMatrix, bool Rotated) {
+void RemoveSeam(int &Y_HEIGHT, int &X_WIDTH, int SEAMS, std::vector<std::vector<int> > &ValueMatrix) {
   
   //Iterate through [SEAMS] number of times
   for (int i=0; i<SEAMS; ++i) {
@@ -225,7 +193,7 @@ void RemoveSeam(int &Y_HEIGHT, int &X_WIDTH, int SEAMS, std::vector<std::vector<
     FillEnergyMatrices (ValueMatrix, EnergyMatrix, CumulativeMatrix);
 
     //Find the Seam to be deleted
-    FindSeam           (CumulativeMatrix, ValueMatrix, Rotated);
+    FindSeam           (CumulativeMatrix, ValueMatrix);
 
     //Fill in the new Matrix
     FillFinalMatrix(ValueMatrix, FinalMatrix);
