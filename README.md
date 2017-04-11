@@ -8,11 +8,13 @@ One executable will be created, `seam`.
 
 To execute the program, simply run the following arugments:
 ```bash
-./seam [filename] [VERTICAL_SEAMS] [HORIZONTAL_SEAMS]```
+./seam [filename] [VERTICAL_SEAMS] [HORIZONTAL_SEAMS]
+```
 
 Examples:
 
-```bash $ ./seam twoBalls.pgm 100 0
+```bash 
+$ ./seam twoBalls.pgm 100 0
 ```
 ```bash
 
