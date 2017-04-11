@@ -15,11 +15,11 @@ To execute the program, simply run the following arugments:
 ### Example Commands:
 
 ```bash 
-$ ./seam twoBalls.pgm 100 0
+./seam twoBalls.pgm 100 0
 ```
 ```bash
 
-$ ./seam test.pgm 50 60
+./seam test.pgm 50 60
 ```
 ### Example Output
 ###### _0_ vertical seams, _100_ horizontal seams <br>
