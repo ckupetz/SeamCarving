@@ -25,6 +25,6 @@ $ ./seam test.pgm 50 60
 ###### _0_ vertical seams, _100_ horizontal seams <br>
 ![](https://s23.postimg.org/4kla6onbv/joconde.png)
 ![](https://s23.postimg.org/b9rtmp8nv/joconde_processed.png)<br>
-###### _0_ vertical seams, _100_ horizontal seams <br>
+###### _50_ vertical seams, _0_ horizontal seams <br>
 ![](https://s23.postimg.org/4kla6onbv/joconde.png)
 ![](https://s23.postimg.org/uqcj983rv/joconde_processed_1.png)
